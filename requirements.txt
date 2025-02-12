@@ -1,0 +1,21 @@
+# Core Dependencies
+python-dotenv          # To manage environment variables (optional)
+pydantic               # Data validation for FastAPI
+fastapi                # API framework
+uvicorn                # ASGI server for running FastAPI
+streamlit              # Web UI (optional, if you want a chatbot interface)
+
+# NLP & Embeddings
+transformers           # Hugging Face library for LLMs
+sentence-transformers  # Pre-trained embedding models (MiniLM, BGE)
+torch                  # Required for transformer models
+
+# Vector Search (FAISS)
+faiss-cpu              # Vector search engine (CPU version)
+
+# Document Processing
+PyPDF2                 # Extract text from PDFs
+
+# Misc
+numpy                  # Handling numerical operations
+scipy                  # Scientific computing (optional, for FAISS tuning)
