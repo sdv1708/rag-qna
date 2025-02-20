@@ -2,13 +2,16 @@ import PyPDF2
 import docx
 import csv
 import os
-from config import Config
+from config import app_config
+from PIL import Image
+import pytesseract
+from pdf2image import convert_from_path
 
 class DocumentProcessor:
     """Class to process documents and extract text"""
 
     def __init__(self):
-        self.documents_path = Config.DOCUMENTS_PATH
+        self.documents_path = app_config.DOCUMENTS_PATH
     
     def extract_text_from_pdf(self, file_path):
         """Extract text from a PDF file"""
@@ -18,6 +21,12 @@ class DocumentProcessor:
             for page_num in range(pdf_reader.numPages):
                 page = pdf_reader.getPage(page_num)
                 text += page.extract_text()
+        
+        # Extract text from images in the PDF
+        images = convert_from_path(file_path)
+        for image in images:
+            text += pytesseract.image_to_string(image)
+        
         return text
     
     def extract_text_from_docx(self, file_path):
@@ -55,5 +64,3 @@ class DocumentProcessor:
                 text = self.extract_text(file_path)
                 documents.append({"file_name": file_name, "text": text})
         return documents
-        
-

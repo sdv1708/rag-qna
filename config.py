@@ -11,3 +11,6 @@ class Config:
     FAISS_INDEX_PATH = os.getenv("FAISS_INDEX_PATH")
     FAISS_METADATA_PATH = os.getenv("FAISS_METADATA_PATH")
     DOCUMENTS_PATH = os.getenv("DOCUMENT_FOLDER")
+    TOP_K = int(os.getenv("TOP_K"))
+
+app_config = Config()
